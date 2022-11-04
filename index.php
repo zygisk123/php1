@@ -157,6 +157,72 @@
    echo number_format((float)$sum /3, 0, '.', '')."<br>";
    echo "10 UZDUOTIS<br>";
 
+   $hour = 13;
+   // cia saugosiu nauja valandu reiksme
+   $new_hour;
+   
+   $minut = 30;
+   
+   // minut + new_minut
+   $minut2;
+   // cia saugosiu nauja minuciu reiksme
+   $new_minut;
+   
+   $sec = 20;
+   $new_sec;
+   
+   $randomSec = rand(0,300);
+   // cia saugosiu sekundziu likuti
+   $randomSec2;
+   
+   // Gauname minuciu skaiciu
+   $new_minut = round($randomSec / 60);
+   $minut2 = $minut + $new_minut;
+   // gauname sekundziu likuti
+   $randomSec2 = $randomSec - $new_minut * 60;
+   
+   if ($randomSec >= 60){
+       $new_sec = round($randomSec2 + $sec);
+       if($new_sec >= 60){
+          // $new_sec -= 60;
+           $minut2++;
+        }
+        if($minut2 >= 60){
+            $minut2 -= 60;
+            if($hour == 23){
+                $new_hour = "00";
+            }
+            else{
+                $new_hour = $hour+1;
+            }
+        }else {
+         $new_hour = $hour;
+        }
+   }else{
+       $new_sec = round($randomSec2 + $sec);
+       if($new_sec >= 60){
+         //  $new_sec -= 60;
+           $minut2++;
+        }
+        if($minut2 >= 60){
+            $minut2 -= 60;
+            if($hour == 23){
+                $new_hour = "00";
+            }
+            else{
+                $new_hour = $hour+1;
+            }
+        }else {
+         $new_hour = $hour;
+        }
+   }
+   
+   echo "Random sec: " . $randomSec;
+   echo "Clock " . $hour . ":" . $minut . ":" . $sec;
+   
+   echo "New Clock " . $new_hour . ":" . $minut2 . ":" .$new_sec;
+   
+   
     ?>
 </body>
 </html>
